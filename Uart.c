@@ -108,7 +108,7 @@ void SetSysClock(void)
     
     if((Uart_Sta&0x80) == 0)
     {
-        if((Uart_Sta&0x40) == 1)//接收到0x0d
+        if((Uart_Sta&0x40) == 0x40)//接收到0x0d
         {
             if(Res != 0x0a)//接受错误，重新开始
             {

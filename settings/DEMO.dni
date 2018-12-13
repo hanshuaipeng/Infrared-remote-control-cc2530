@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=75366207
+Checksum=726366583
 [DisAssemblyWindow]
 NumStates=_ 1
 State 1=_ 1
@@ -47,10 +47,9 @@ ShowArgs=0
 MixedMode=1
 [Breakpoints]
 Bp0=_ "STD_CODE" "{$PROJ_DIR$\Uart.c}.139.1" 0 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\Uart.c}.138.2" 0 0 0 0 "" 0 ""
-Bp2=_ "STD_CODE" "{$PROJ_DIR$\main.c}.95.1" 0 0 0 0 "" 0 ""
-Bp3=_ "STD_CODE" "{$PROJ_DIR$\main.c}.89.7" 1 0 0 0 "" 0 ""
-Count=4
+Bp1=_ "STD_CODE" "{$PROJ_DIR$\main.c}.144.1" 0 0 0 0 "" 0 ""
+Bp2=_ "STD_CODE" "{$PROJ_DIR$\main.c}.107.25" 1 0 0 0 "" 0 ""
+Count=3
 [ChipconEmu]
 Stop timers on halt=1
 Leave target running=1

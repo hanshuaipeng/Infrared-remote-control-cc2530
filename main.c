@@ -4,10 +4,11 @@
 #include <stdio.h>
 #include"IR.H"
 #include "type.h"
-
+#include "string.h"
 uint8_t Txdata[]={"The test is VS1838.\n"};
 uint8_t Red_Data[80];
-
+uint8_t Key_Num=0;
+uint8_t User_Len=0;
 //CRC16校验函数
 //CRC校验位低位在前，高位在后
 uint16_t Ar_crc_16(uint8_t *input,uint16_t len)
@@ -47,6 +48,14 @@ uint16_t Ar_crc_16(uint8_t *input,uint16_t len)
 	}
 }
 
+void Clear_Buff(uint8_t *buff,uint8_t len)
+{
+    uint8_t i=0;
+    for(i=0;i<len;i++)
+    {
+        buff[i]=0;
+    }
+}
 
 void Study_Data_Vul()
 {
@@ -59,14 +68,54 @@ void Study_Data_Vul()
             Red_Data[i*2]=ir_packet.ir_hl[i]>>8;
             Red_Data[i*2+1]=ir_packet.ir_hl[i];       
         }
-       crc=Ar_crc_16(Red_Data,(ir_packet.len)*2+2);
+        crc=Ar_crc_16(Red_Data,(ir_packet.len)*2+2);
         Red_Data[(ir_packet.len)*2]=crc>>8;
         Red_Data[(ir_packet.len)*2+1]=crc;
         UartSend_String(Red_Data,(ir_packet.len)*2+2);
-        
-        Send_char(0x0d);
-        Send_char(0x0a);
+        Clear_Buff(Red_Data,sizeof(Red_Data));
+        for(i=0;i<80;i++)
+            ir_packet.ir_hl[i]=0;
     }
+}
+void Uart_Data_Vul()
+{
+    uint8_t i=0;
+    if((Uart_Sta&0x80) == 0x80)
+    {
+        if(Uart_Rec[0]==0xaa&&Uart_Rec[1]==0x55)
+        {
+            switch(Uart_Rec[2])
+            {
+                case 0x00:
+                    Study_Data_Vul();
+                    break;
+                case 0x01:
+                    Key_Num=Uart_Rec[3];
+                    User_Len=Uart_Rec[4];
+                    for(i=0;i<User_Len;i++)
+                    {
+                        Red_Data[i]=Uart_Rec[i+5];
+                    }
+                    if(Ar_crc_16(Red_Data,User_Len))
+                    {
+                        User_Len=User_Len-2;//减去校验位
+                        for(i=0;i<User_Len/2;i++)
+                        {
+                            ir_packet.ir_hl[i]=(Red_Data[i*2]<<8)+Red_Data[i*2+1];
+                        }
+                        IR_Output_Send(CNT38K);
+                        Delayms(71);
+                    }
+
+                    break;
+                default :break;
+            }
+            Uart_Sta=0;
+            Data_Len=0;
+            Clear_Buff(Uart_Rec,sizeof(Uart_Rec));
+        }
+    }
+
 }
 /**************************************************
  函 数 名  : main
@@ -82,13 +131,12 @@ void main(void)
     
     T1CTL &= ~0x03; //暂停Timer
     IR_Study_Init_Led();
-   Study_Data_Vul();
+    
     while(1)
     { 
-      
-      IR_Output_Send(CNT38K);
-      Delayms(71);
-      
+      //IR_Output_Send(CNT38K);
+      //Delayms(71);
+     Uart_Data_Vul();
     }
 }
 
