@@ -6,65 +6,65 @@
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2530F256.xcl</file>
       <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\IR.c</file>
+      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+      <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2530F256.xcl</file>
+      <file>$PROJ_DIR$\main.c</file>
       <file>$TOOLKIT_DIR$\lib\clib\cl-pli-nlpd-1e16x01.r51</file>
       <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
-      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\VS1838.r51</file>
-      <file>$PROJ_DIR$\Debug\Obj\flash.pbi</file>
-      <file>$PROJ_DIR$\VS1838.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.r51</file>
-      <file>$PROJ_DIR$\Uart.c</file>
-      <file>$PROJ_DIR$\Uart.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\VS1838.pbi</file>
-      <file>$PROJ_DIR$\flash.h</file>
       <file>$PROJ_DIR$\IR.h</file>
-      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\Uart.c</file>
+      <file>$PROJ_DIR$\flash.c</file>
+      <file>$PROJ_DIR$\flash.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\VS1838.r51</file>
+      <file>$PROJ_DIR$\VS1838.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\flash.pbi</file>
       <file>$PROJ_DIR$\VS1838.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r51</file>
+      <file>$PROJ_DIR$\Uart.h</file>
       <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\VS1838.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\IR.pbi</file>
       <file>$TOOLKIT_DIR$\inc\clib\stdbool.h</file>
-      <file>$PROJ_DIR$\flash.c</file>
       <file>$PROJ_DIR$\Debug\Obj\IR.r51</file>
-      <file>$PROJ_DIR$\IR.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\DEMO.pbd</file>
-      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
       <file>$PROJ_DIR$\Debug\Exe\DEMO.d51</file>
-      <file>$PROJ_DIR$\Debug\Obj\Uart.r51</file>
-      <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\Uart.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\DEMO.pbd</file>
       <file>$PROJ_DIR$\type.h</file>
+      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\Uart.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\Uart.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 24</file>
+          <file> 22</file>
         </tool>
       </outputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\Uart.c</name>
+      <name>$PROJ_DIR$\IR.c</name>
       <outputs>
         <tool>
-          <name>ICC8051</name>
-          <file> 25</file>
+          <name>BICOMP</name>
+          <file> 19</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 27</file>
+          <name>ICC8051</name>
+          <file> 21</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICC8051</name>
-          <file> 10 28 23 4 3</file>
+          <name>BICOMP</name>
+          <file> 7 25 20</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 10 28 23 4 3</file>
+          <name>ICC8051</name>
+          <file> 7 25 20</file>
         </tool>
       </inputs>
     </file>
@@ -72,45 +72,45 @@
       <name>$PROJ_DIR$\main.c</name>
       <outputs>
         <tool>
-          <name>ICC8051</name>
-          <file> 8</file>
+          <name>BICOMP</name>
+          <file> 0</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 1</file>
+          <name>ICC8051</name>
+          <file> 15</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICC8051</name>
-          <file> 23 10 28 4 3 16 26 13 18</file>
+          <name>BICOMP</name>
+          <file> 25 16 24 2 6 17 28 7 20</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 23 10 28 4 3 16 26 13 18</file>
+          <name>ICC8051</name>
+          <file> 25 16 24 2 6 17 28 7 20</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\VS1838.c</name>
+      <name>$PROJ_DIR$\Uart.c</name>
       <outputs>
         <tool>
-          <name>ICC8051</name>
-          <file> 5</file>
+          <name>BICOMP</name>
+          <file> 27</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 11</file>
+          <name>ICC8051</name>
+          <file> 26</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICC8051</name>
-          <file> 7 23</file>
+          <name>BICOMP</name>
+          <file> 16 24 25 2 6</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 7 23</file>
+          <name>ICC8051</name>
+          <file> 16 24 25 2 6</file>
         </tool>
       </inputs>
     </file>
@@ -119,40 +119,40 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 6</file>
+          <file> 13</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICC8051</name>
-          <file> 12 23 18 28</file>
+          <name>BICOMP</name>
+          <file> 10 25 20 24</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 12 23 18 28</file>
+          <name>ICC8051</name>
+          <file> 10 25 20 24</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\IR.c</name>
+      <name>$PROJ_DIR$\VS1838.c</name>
       <outputs>
         <tool>
-          <name>ICC8051</name>
-          <file> 20</file>
+          <name>BICOMP</name>
+          <file> 18</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 17</file>
+          <name>ICC8051</name>
+          <file> 11</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICC8051</name>
-          <file> 13 23 18</file>
+          <name>BICOMP</name>
+          <file> 12 25</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 13 23 18</file>
+          <name>ICC8051</name>
+          <file> 12 25</file>
         </tool>
       </inputs>
     </file>
@@ -161,7 +161,7 @@
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 0 20 25 8 2</file>
+          <file> 3 21 26 15 5</file>
         </tool>
       </inputs>
     </file>

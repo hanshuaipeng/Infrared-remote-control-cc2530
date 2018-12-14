@@ -5,7 +5,6 @@
 #include"IR.H"
 #include "type.h"
 #include "string.h"
-uint8_t Txdata[]={"The test is VS1838.\n"};
 uint8_t Red_Data[80];
 uint8_t Key_Num=0;
 uint8_t User_Len=0;
@@ -13,39 +12,37 @@ uint8_t User_Len=0;
 //CRC校验位低位在前，高位在后
 uint16_t Ar_crc_16(uint8_t *input,uint16_t len)
 {
-	uint16_t n = 0;
-	uint8_t m=0;
-	uint16_t crc_in = 0;
-	uint16_t crc_re = 0xffff;
-	uint16_t poly = 0xa001;
-	uint16_t xor_out = 0x0000;
+    uint16_t n = 0;
+    uint8_t m=0;
+    uint16_t crc_in = 0;
+    uint16_t crc_re = 0xffff;
+    uint16_t poly = 0xa001;
+    uint16_t xor_out = 0x0000;
 
     crc_in = input[len - 2] * 256 + input[len - 1];
-    //os_printf("crc_in=0x%x\r\n",crc_in);// 测试代码，打印crc_in
-	for(n=0;n<(len-2);n++)
-	{
-		crc_re = crc_re ^ input[n];
-		for(m=0;m<8;m++)
-		{
-			if(crc_re & 1)
-			{
-				crc_re >>= 1;
-				crc_re = crc_re ^ poly;
-			}
-			else
-			{
-				crc_re >>= 1;
-			}
-		}
-	}
-	crc_re = crc_re ^ xor_out;
-	//os_printf("crc_re=0x%x\r\n",crc_re);// 测试代码，打印crc校验字节
-	if((crc_in == crc_re)||(crc_in == 0)){
-		return crc_re;
-	}
-	else{
-		return 0;
-	}
+    for(n=0;n<(len-2);n++)
+    {
+            crc_re = crc_re ^ input[n];
+            for(m=0;m<8;m++)
+            {
+                    if(crc_re & 1)
+                    {
+                            crc_re >>= 1;
+                            crc_re = crc_re ^ poly;
+                    }
+                    else
+                    {
+                            crc_re >>= 1;
+                    }
+            }
+    }
+    crc_re = crc_re ^ xor_out;
+    if((crc_in == crc_re)||(crc_in == 0)){
+            return crc_re;
+    }
+    else{
+            return 0;
+    }
 }
 
 void Clear_Buff(uint8_t *buff,uint8_t len)
@@ -56,7 +53,7 @@ void Clear_Buff(uint8_t *buff,uint8_t len)
         buff[i]=0;
     }
 }
-
+//学习到的数据，uint16转换成uint8，后添加两个校验，通过串口发送
 void Study_Data_Vul()
 {
     uint8_t i=0;
@@ -77,6 +74,7 @@ void Study_Data_Vul()
             ir_packet.ir_hl[i]=0;
     }
 }
+//串口接收的数据，uint8转换成uint16，减去两个检验位
 void Uart_Data_Vul()
 {
     uint8_t i=0;
@@ -134,9 +132,7 @@ void main(void)
     
     while(1)
     { 
-      //IR_Output_Send(CNT38K);
-      //Delayms(71);
-     Uart_Data_Vul();
+        Uart_Data_Vul();
     }
 }
 
