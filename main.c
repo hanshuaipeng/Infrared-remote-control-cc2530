@@ -98,8 +98,8 @@ void Uart_Data_Vul()
                     }
                     if(Ar_crc_16(Red_Data,User_Len))
                     {
-                        User_Len=User_Len-2;//减去校验位
-                        for(i=0;i<User_Len/2;i++)
+                        ir_packet.len=(User_Len-2)/2;//减去校验位
+                        for(i=0;i<ir_packet.len;i++)
                         {
                             ir_packet.ir_hl[i]=(Red_Data[i*2]<<8)+Red_Data[i*2+1];
                         }
@@ -110,10 +110,10 @@ void Uart_Data_Vul()
                     break;
                 default :break;
             }
-            Uart_Sta=0;
-            Data_Len=0;
-            Clear_Buff(Uart_Rec,sizeof(Uart_Rec));
         }
+        Uart_Sta=0;
+        Data_Len=0;
+        Clear_Buff(Uart_Rec,sizeof(Uart_Rec));
     }
 
 }
